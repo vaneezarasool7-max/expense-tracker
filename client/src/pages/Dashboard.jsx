@@ -20,7 +20,7 @@ function Dashboard() {
     }
   };
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchExpenses = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/expenses", {
@@ -47,6 +47,17 @@ function Dashboard() {
       loadExpenses();
     } catch (err) {
       console.log("Could not add expense", err);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/expenses/${id}`, {
+        headers,
+      });
+      loadExpenses();
+    } catch (err) {
+      console.log("Could not delete expense", err);
     }
   };
 
@@ -85,12 +96,14 @@ function Dashboard() {
         <ul>
           {expenses.map((e) => (
             <li key={e._id}>
-              {e.title} - Rs. {e.amount} ({e.category})
+              {e.title} - Rs. {e.amount} ({e.category}){" "}
+              <button onClick={() => handleDelete(e._id)}>Delete</button>
             </li>
           ))}
         </ul>
       )}
-      </div>
-  ) ;
+    </div>
+  );
 }
+
 export default Dashboard;
