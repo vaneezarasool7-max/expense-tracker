@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import CategoryChart from "../components/CategoryChart";
 
 function Dashboard() {
   const [expenses, setExpenses] = useState([]);
@@ -112,6 +113,8 @@ function Dashboard() {
         <br />
         <button type="submit">Add Expense</button>
       </form>
+
+      <CategoryChart expenses={expenses} />
 
       {expenses.length === 0 ? (
         <p>No expenses yet.</p>
