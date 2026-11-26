@@ -6,6 +6,9 @@ function Dashboard() {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("Food");
+  const [editingId, setEditingId] = useState(null);
+  const [editTitle, setEditTitle] = useState("");
+  const [editAmount, setEditAmount] = useState("");
   const token = localStorage.getItem("token");
   const headers = { Authorization: `Bearer ${token}` };
 
@@ -61,6 +64,26 @@ function Dashboard() {
     }
   };
 
+  const startEdit = (exp) => {
+    setEditingId(exp._id);
+    setEditTitle(exp.title);
+    setEditAmount(exp.amount);
+  };
+
+  const handleSave = async (id) => {
+    try {
+      await axios.put(
+        `http://localhost:5000/api/expenses/${id}`,
+        { title: editTitle, amount: Number(editAmount) },
+        { headers }
+      );
+      setEditingId(null);
+      loadExpenses();
+    } catch (err) {
+      console.log("Could not update expense", err);
+    }
+  };
+
   return (
     <div>
       <h2>My Expenses</h2>
@@ -96,8 +119,27 @@ function Dashboard() {
         <ul>
           {expenses.map((e) => (
             <li key={e._id}>
-              {e.title} - Rs. {e.amount} ({e.category}){" "}
-              <button onClick={() => handleDelete(e._id)}>Delete</button>
+              {editingId === e._id ? (
+                <>
+                  <input
+                    value={editTitle}
+                    onChange={(ev) => setEditTitle(ev.target.value)}
+                  />{" "}
+                  <input
+                    type="number"
+                    value={editAmount}
+                    onChange={(ev) => setEditAmount(ev.target.value)}
+                  />{" "}
+                  <button onClick={() => handleSave(e._id)}>Save</button>{" "}
+                  <button onClick={() => setEditingId(null)}>Cancel</button>
+                </>
+              ) : (
+                <>
+                  {e.title} - Rs. {e.amount} ({e.category}){" "}
+                  <button onClick={() => startEdit(e)}>Edit</button>{" "}
+                  <button onClick={() => handleDelete(e._id)}>Delete</button>
+                </>
+              )}
             </li>
           ))}
         </ul>
