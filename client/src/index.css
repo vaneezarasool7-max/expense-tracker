@@ -185,3 +185,12 @@ li button:last-of-type:hover {
 .recharts-tooltip-item {
   color: var(--text) !important;
 }
+
+/* Legend fix: stop the global li style from making big boxes */
+.recharts-legend-wrapper li {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 8px 0 0 !important;
+  display: inline-block !important;
+}

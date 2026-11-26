@@ -22,14 +22,21 @@ function CategoryChart({ expenses }) {
   if (data.length === 0) return null;
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center", marginBottom: 24 }}>
       <h3>Spending by Category</h3>
-      <PieChart width={320} height={280} style={{ margin: "0 auto" }}>
+      <PieChart
+        width={360}
+        height={340}
+        margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+        style={{ margin: "0 auto" }}
+      >
         <Pie
           data={data}
           dataKey="value"
           nameKey="name"
-          outerRadius={90}
+          cx="50%"
+          cy="45%"
+          outerRadius={80}
           label
           stroke="#0b0f1a"
           strokeWidth={2}
@@ -42,7 +49,7 @@ function CategoryChart({ expenses }) {
           ))}
         </Pie>
         <Tooltip />
-        <Legend />
+        <Legend verticalAlign="bottom" height={50} />
       </PieChart>
     </div>
   );
