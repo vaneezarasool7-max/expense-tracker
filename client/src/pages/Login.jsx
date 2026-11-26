@@ -14,7 +14,7 @@ function Login() {
         password,
       });
       localStorage.setItem("token", res.data.token);
-      setMessage("Logged in!");
+      window.location.href = "/";
     } catch (err) {
       setMessage(err.response?.data?.message || "Something went wrong");
     }
