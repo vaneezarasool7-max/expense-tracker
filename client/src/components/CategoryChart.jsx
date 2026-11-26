@@ -1,6 +1,12 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
-const COLORS = ["#ef4444", "#dc2626", "#f87171", "#b91c1c", "#fca5a5"];
+const CATEGORY_COLORS = {
+  Food: "#f97316",
+  Transport: "#3b82f6",
+  Bills: "#ef4444",
+  Shopping: "#a855f7",
+  Other: "#22c55e",
+};
 
 function CategoryChart({ expenses }) {
   const totals = {};
@@ -28,8 +34,11 @@ function CategoryChart({ expenses }) {
           stroke="#0b0f1a"
           strokeWidth={2}
         >
-          {data.map((entry, index) => (
-            <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
+          {data.map((entry) => (
+            <Cell
+              key={entry.name}
+              fill={CATEGORY_COLORS[entry.name] || "#94a3b8"}
+            />
           ))}
         </Pie>
         <Tooltip />
