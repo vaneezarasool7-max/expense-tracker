@@ -1,6 +1,6 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
-const COLORS = ["#4f46e5", "#16a34a", "#f59e0b", "#dc2626", "#0891b2"];
+const COLORS = ["#ef4444", "#dc2626", "#f87171", "#b91c1c", "#fca5a5"];
 
 function CategoryChart({ expenses }) {
   const totals = {};
@@ -16,10 +16,18 @@ function CategoryChart({ expenses }) {
   if (data.length === 0) return null;
 
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <h3>Spending by Category</h3>
-      <PieChart width={320} height={280}>
-        <Pie data={data} dataKey="value" nameKey="name" outerRadius={90} label>
+      <PieChart width={320} height={280} style={{ margin: "0 auto" }}>
+        <Pie
+          data={data}
+          dataKey="value"
+          nameKey="name"
+          outerRadius={90}
+          label
+          stroke="#0b0f1a"
+          strokeWidth={2}
+        >
           {data.map((entry, index) => (
             <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
           ))}

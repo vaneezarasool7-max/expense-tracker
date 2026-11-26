@@ -1,79 +1,187 @@
+:root {
+  --bg: #0b0f1a;
+  --card: #151b2b;
+  --border: #263049;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --accent: #ef4444;
+  --accent-hover: #dc2626;
+  --danger: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f3f4f6;
-  color: #111827;
+  min-height: 100vh;
+  font-family: "Segoe UI", system-ui, Arial, sans-serif;
+  background: radial-gradient(circle at top, #2a1520 0%, var(--bg) 55%);
+  color: var(--text);
 }
 
 #root {
-  max-width: 480px;
+  max-width: 520px;
   margin: 0 auto;
-  padding: 24px 16px;
+  padding: 32px 16px 64px;
 }
 
 h1 {
   text-align: center;
-  color: #4f46e5;
+  font-size: 2rem;
+  margin: 0 0 16px;
+  background: linear-gradient(90deg, #f87171, #fb923c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+h2 {
+  margin: 8px 0 16px;
+  font-size: 1.4rem;
+}
+
+h3 {
+  color: var(--muted);
+  font-weight: 600;
+  margin: 8px 0;
 }
 
 nav {
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 nav a {
-  color: #4f46e5;
+  color: #f87171;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+}
+
+nav a:hover {
+  color: #fca5a5;
 }
 
 form {
-  background: white;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  margin-bottom: 24px;
 }
 
 input,
 select {
   width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #0f1422;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
   font-size: 14px;
+  outline: none;
+}
+
+input::placeholder {
+  color: #64748b;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
 }
 
 button {
-  background: #4f46e5;
+  background: var(--accent);
   color: white;
   border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
+  padding: 10px 16px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.1s;
 }
 
 button:hover {
-  background: #4338ca;
+  background: var(--accent-hover);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+p {
+  color: var(--muted);
 }
 
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
-  background: white;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
 }
 
 li input {
   width: auto;
+  flex: 1;
+  min-width: 90px;
   margin-bottom: 0;
+}
+
+li button {
+  background: #232c45;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+li button:hover {
+  background: #2f3a5c;
+}
+
+li button:last-of-type:hover {
+  background: var(--danger);
+}
+
+/* Chart */
+.recharts-wrapper {
+  margin: 0 auto;
+}
+
+.recharts-wrapper *:focus {
+  outline: none;
+}
+
+.recharts-text,
+.recharts-pie-label-text {
+  fill: var(--text);
+}
+
+.recharts-legend-item-text {
+  color: var(--text) !important;
+}
+
+.recharts-default-tooltip {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px;
+}
+
+.recharts-tooltip-item {
+  color: var(--text) !important;
 }
